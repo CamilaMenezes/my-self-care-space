@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   def index
-    @services = Services.all
+    @services = Service.all
   end
 
   def show 
@@ -43,7 +43,7 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service), permit(:name, :price)
+    params.require(:service).permit(:name, :price)
   end
 
   def set_service
