@@ -1,0 +1,7 @@
+<h1>Formulário profissional</h1>
+<%= simple_form_for current_user, url: update_professional_info_path do |f|%>
+  <%= f.input :profession %>
+  <%= f.input :description %>
+  <%= f.input :address %>
+  <%= f.submit "Criar perfil profissional" %>
+<% end %> 

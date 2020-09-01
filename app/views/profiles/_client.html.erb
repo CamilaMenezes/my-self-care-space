@@ -1,0 +1,18 @@
+<h1>Modo Cliente</h1>
+
+    <%= link_to "Buscar serviços", services_path %>
+
+    <h2>Meu agendamentos</h2>
+<ul> 
+  <% current_user.orders.each do |order| %>
+   
+    <li>
+      Serviço:<%= order.service.name %>
+      Data: <%= order.reservation %>
+      Profissional: <%= order.service.user.name %>
+      Endereço: <%= order.service.user.address %>
+      Valor: <%= order.final_price %>
+      Status: <%= order.status %>
+    </li>
+  <% end %>
+</ul>
