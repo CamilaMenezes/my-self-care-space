@@ -1,2 +1,16 @@
 <h1> <%= @service.name %></h1>
 <h2>Profissional: <%= @service.user.name%></h2>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae non veritatis </p>
+
+  if #current_user for o Profissional
+
+    <%= link_to "Edit", edit_service_path(@service) %>
+
+    <%= link_to "Delete", service_path(@service), method: :delete %>
+
+  else # Realizar o agendamento
+
+  end
+
+

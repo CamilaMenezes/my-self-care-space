@@ -1,0 +1,7 @@
+<h1>Services</h1>
+
+<ul> 
+  <% @services.each do |service| %>
+    <li><%= link_to"#{service.name}, realizado por #{service.user.name}", service_path(service.id) %></li>
+  <% end %>
+</ul>
