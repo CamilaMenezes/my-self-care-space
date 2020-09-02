@@ -1,44 +1,52 @@
-<h1>Perfil Profissional</h1>
+<div class="row">
+  <div class="col-12 col-lg-9">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <h2>Perfil profissional</h2>
+        <p>Atuação: <%= current_user.profession %> </p>
+        <p>Endereço de atendimento: <%= current_user.address %> </p>
+      </div>
+      <div class="col-12 col-md-6">
+        <h2>Sobre meu trabalho</h2>
+        <p class="text-justify"><%= current_user.description %></p>
+      </div>
+    </div>
 
-Foto
-
-<h2>Sobre  </h2>
-
-<%= current_user.name %>
-<%= current_user.profession %>
-<%= current_user.description %>
-<%= current_user.address %>
-
-
-<h2>Meus serviços</h2>
-<%= link_to "Criar um novo serviço", new_service_path, class: "btn btn-primary"%>
-
-<ul> 
-  <% current_user.sold_services.each do |service| %>
-    <li><%= link_to"#{service.name}, realizado por #{service.user.name}", service_path(service.id) %></li>
-  <% end %>
-</ul>
-
-
-
-<h2>Meus agendamentos</h2>
-
-<ul>
-  <% current_user.sold_services.each do |service|  %>
-    <% service.orders.each do |order| %>
-      <li>
-        Serviço: <%= order.service.name %>
-        Cliente: <%= order.user.name %>
-        Data: <%= order.reservation %>
-        Valor: <%= order.final_price %>
-        status: <%= order.status %>
-        <% if order.status == "Em espera" %>
-          <%= link_to "confirmar", order_confirmation_path(order.id), method: :post %>
-        <% elsif order.status != "Cancelado" %>
-          <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post %>
+    <h2>Meus agendamentos</h2>
+    <div class="row">
+      <% current_user.sold_services.each do |service|  %>
+        <% service.orders.each do |order| %>
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
+            <div class="bg-white rounded p-3 shadow">
+              <h3><%= order.service.name %></h3>
+              <p>Cliente: <%= order.user.name %></p>
+              <p>Data: <%= order.reservation %></p>
+              <p>Valor: <%= order.final_price %></p>
+              <p>status: <%= order.status %></p>
+              <% if order.status == "Em espera" %>
+                <%= link_to "confirmar", order_confirmation_path(order.id), method: :post, class: "btn btn-success" %>
+              <% elsif order.status != "Cancelado" %>
+                <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post, class: "btn btn-danger", data: {confirm: "Tem certeza que deseja cancelar?"} %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-12 col-lg-3">
+    <h2>Meus serviços</h2>
+    <ul> 
+      <% current_user.sold_services.each do |service| %>
+        <li><%= link_to"#{service.name}, Valor: #{service.price}", service_path(service.id) %></li>
+      <% end %>
+    </ul>
+    <%= link_to "Criar um novo serviço", new_service_path, class: "btn btn-primary"%>
+  </div>
+</div>
 
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+
+
+
+
+
