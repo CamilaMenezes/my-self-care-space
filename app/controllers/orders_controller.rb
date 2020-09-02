@@ -13,17 +13,30 @@ class OrdersController < ApplicationController
     @new_order.service = @service
     @new_order.final_price = @service.price
     if @new_order.save
-      redirect_to services_path
+      redirect_to my_profile_path, notice: "Seu agendamento foi solicitado. Aguarde a confirmção!"
     else
-      render :new
+      render :new, alert: "Seu agendamento não pode ser socilitado"
     end
   end
 
-  def update
-    if @order.update(service_params)
-      redirect_to @service
+
+  def confirmation
+    @order = Order.find(params[:order_id])
+    @order.status = "Confirmado"
+    if @order.save
+      redirect_to my_profile_path, notice: 'Seu agendamento foi confirmado!'
     else
-      render :new
+      redirect_to my_profile_path, alert: 'Seu agendamento não pode ser confirmado'
+    end
+  end
+  
+  def cancelation
+    @order = Order.find(params[:order_id])
+    @order.status = "Cancelado"
+    if @order.save
+      redirect_to my_profile_path, notice: 'Seu agendamento foi cancelado!'
+    else
+      redirect_to my_profile_path, alert: 'Seu agendamento não pode ser cancelado'
     end
   end
 

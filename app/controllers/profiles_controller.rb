@@ -3,6 +3,13 @@ class ProfilesController < ApplicationController
   def my_profile
   end
 
+  def show
+    @professional = User.find(params[:id])
+    unless @professional.professional?
+      redirect_to root_path, alert: "Ação não autorizada"
+    end
+  end
+
   def edit_professional_info
   end
   

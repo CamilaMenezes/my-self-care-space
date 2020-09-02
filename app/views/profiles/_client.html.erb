@@ -13,6 +13,9 @@
       Endereço: <%= order.service.user.address %>
       Valor: <%= order.final_price %>
       Status: <%= order.status %>
+      <% if order.status != "Cancelado" %>
+          <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post %>
+        <% end %>
     </li>
   <% end %>
 </ul>

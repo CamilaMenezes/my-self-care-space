@@ -32,6 +32,12 @@ Foto
         Data: <%= order.reservation %>
         Valor: <%= order.final_price %>
         status: <%= order.status %>
+        <% if order.status == "Em espera" %>
+          <%= link_to "confirmar", order_confirmation_path(order.id), method: :post %>
+        <% elsif order.status != "Cancelado" %>
+          <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post %>
+        <% end %>
+
       </li>
     <% end %>
   <% end %>

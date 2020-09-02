@@ -1,14 +1,15 @@
 <h1> <%= @service.name %></h1>
-<h2>Profissional: <%= @service.user.name%></h2>
+<h2>Profissional: <%= link_to @service.user.name, profile_path(@service.user.id)   %></h2>
 
 
 
-  <% if current_user == @service.user %>
-    <%= link_to "Edit", edit_service_path(@service) %>
-    <%= link_to "Delete", service_path(@service), method: :delete %>
-  <% end %>
+<% if current_user == @service.user %>
+  <%= link_to "Edit", edit_service_path(@service) %>
+  <%= link_to "Delete", service_path(@service), method: :delete %>
+<% else %>
+  <%= link_to "Agendar esse serviço", new_service_order_path(@service.id)  %>
+<% end %>
 
-<%= link_to "Agendar esse serviço", new_service_order_path(@service.id)  %>
 
 <%= link_to "voltar para serviços", services_path  %>
  

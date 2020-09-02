@@ -1,0 +1,18 @@
+<h1>Perfil Profissional</h1>
+
+Foto
+
+<h2>Sobre  </h2>
+
+<%= current_user.name %>
+<%= current_user.profession %>
+<%= current_user.description %>
+<%= current_user.address %>
+
+<h2>Meus serviços</h2>
+
+<ul> 
+  <% current_user.sold_services.each do |service| %>
+    <li><%= link_to"#{service.name}, realizado por #{service.user.name}", service_path(service.id) %></li>
+  <% end %>
+</ul>
