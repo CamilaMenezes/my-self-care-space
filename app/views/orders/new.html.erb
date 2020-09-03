@@ -1,4 +1,14 @@
-<%= simple_form_for [@service, @new_order] do |f|%>
-  <%= f.input :reservation %>
-  <%= f.submit "Agendar" %>
-<% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <div class="bg-white p-3 shadow rounded text-center">
+        <%= simple_form_for [@service, @new_order] do |f|%>
+          <%= f.input :reservation, as: :string, type: :text, 
+                      wrapper_html: { class: 'd-flex flex-column align-items-center'}, 
+                      input_html: { class: 'd-none' } %>
+          <%= f.submit "Agendar", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

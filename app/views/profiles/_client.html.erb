@@ -1,21 +1,23 @@
-<h1>Modo Cliente</h1>
 
-    <%= link_to "Buscar serviços", services_path %>
+<h2>Meus agendamentos</h2>
 
-    <h2>Meu agendamentos</h2>
-<ul> 
+<div class="row">
   <% current_user.orders.each do |order| %>
-   
-    <li>
-      Serviço:<%= order.service.name %>
-      Data: <%= order.reservation %>
-      Profissional: <%= order.service.user.name %>
-      Endereço: <%= order.service.user.address %>
-      Valor: <%= order.final_price %>
-      Status: <%= order.status %>
-      <% if order.status != "Cancelado" %>
-          <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post %>
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h2><%= link_to "#{order.service.name}", service_path(order.service.id) %></h2>
+        <p>
+          <i class="far fa-calendar"></i> <%= order.reservation.strftime("%d/%m/%Y") %> 
+          <i class="far fa-clock"></i> <%= order.reservation.strftime("%H:%M") %>
+        </p>
+        <p>Profissional: <%= order.service.user.name %></p>
+        <p>Endereço: <%= order.service.user.address %></p>
+        <p>Valor: <%= order.final_price %></p>
+        <p>Status: <%= order.status %></p>
+        <% if order.status != "Cancelado" %>
+            <%= link_to "Cancelar", order_cancelation_path(order.id), method: :post %>
         <% end %>
-    </li>
-  <% end %>
-</ul>
+      </div>
+    </div>
+  <%end %>
+</div>

@@ -1,18 +1,34 @@
-<h1>Perfil Profissional</h1>
 
-Foto
+<div class="container">
+  <h1><%= @professional.name %></h1>
 
-<h2>Sobre  </h2>
+  <div class="row">
+    <div class="col-6">
+      <p>Profissão: <%= @professional.profession %> </p>
+    </div>
+    <div class="col-6">
+      <p>Endereço comercial:<%= @professional.address %></p>
+    </div>
+  </div>
 
-<%= current_user.name %>
-<%= current_user.profession %>
-<%= current_user.description %>
-<%= current_user.address %>
+  <div class="row">
+    <div class="col-6">
+    <h3>Sobre</h3>
+    <p><%= @professional.description %></p>    
+    </div>
+  </div>
 
-<h2>Meus serviços</h2>
+  <h2> Serviços de <%= @professional.name %></h2>
 
-<ul> 
-  <% current_user.sold_services.each do |service| %>
-    <li><%= link_to"#{service.name}, realizado por #{service.user.name}", service_path(service.id) %></li>
-  <% end %>
-</ul>
+
+  <div class="row">
+    <% @professional.sold_services.each do |service| %>
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h2><%= link_to "#{service.name}" , service_path(service.id) %></h2>
+        <p>Valor: <%= service.price %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -5,6 +5,7 @@
         <h2>Perfil profissional</h2>
         <p>Atuação: <%= current_user.profession %> </p>
         <p>Endereço de atendimento: <%= current_user.address %> </p>
+        <%= link_to "Editar meu perfil", edit_professional_info_path, class: "btn btn-primary"  %>
       </div>
       <div class="col-12 col-md-6">
         <h2>Sobre meu trabalho</h2>

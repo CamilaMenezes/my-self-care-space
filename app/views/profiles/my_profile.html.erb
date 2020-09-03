@@ -15,25 +15,23 @@
           <a class="nav-link active" id="professional-tab" data-toggle="tab" href="#professional" role="tab" aria-controls="professional" aria-selected="false">professional</a>
         </li>
       </ul>
-  <% else %>
-        <ul class="nav nav-tabs d-flex justify-content-end" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="client-tab" data-toggle="tab" href="#client" role="tab" aria-controls="client" aria-selected="true">client</a>
-          </li>
-        </ul>
   <% end %>
 
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade <%= 'show active' unless current_user.professional?  %>  " id="client" role="tabpanel" aria-labelledby="client-tab">
       
       <%= render "client"  %>
+   
+    </div>
 
     
-    </div>
-    <div class="tab-pane fade <%= 'show active' if current_user.professional?  %>" id="professional" role="tabpanel" aria-labelledby="professional-tab">
-    
-      <%= render "professional"  %>
+    <% if current_user.professional? %>
+      <div class="tab-pane fade show active" id="professional" role="tabpanel" aria-labelledby="professional-tab">
+      
+        <%= render "professional"  %>
 
-    </div>
+      </div>
+    <% end %>
+    
   </div>
 </div>
