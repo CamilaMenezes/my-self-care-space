@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :images, dependent: :destroy
 
   validates :name, presence: true
+  validates :profession, presence: true, on: :update, if: :professional?
 end

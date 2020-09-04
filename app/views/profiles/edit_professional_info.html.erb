@@ -5,9 +5,12 @@
         <div class="bg-white rounded p-3 shadow">
           <h2 class="text-center">Formulário profissional</h2>
           <%= simple_form_for current_user, url: update_professional_info_path do |f|%>
-            <%= f.input :profession %>
-            <%= f.input :description %>
-            <%= f.input :address %>
+            <%= f.input :profession,
+                  label: "Profissão" %>
+            <%= f.input :description,
+                  label: "Descrição" %>
+            <%= f.input :address,
+                  label: "Endereço" %>
             <%= f.submit "Criar perfil profissional", class: 'btn btn-primary' %>
           <% end %>
         </div>

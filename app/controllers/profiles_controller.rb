@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :show ]
   
   def my_profile
   end
