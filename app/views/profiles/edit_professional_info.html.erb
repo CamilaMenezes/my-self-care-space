@@ -1,14 +1,16 @@
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6">
-      <div class="bg-white rounded p-3 shadow">
-        <h2 class="text-center">Formulário profissional</h2>
-        <%= simple_form_for current_user, url: update_professional_info_path do |f|%>
-          <%= f.input :profession %>
-          <%= f.input :description %>
-          <%= f.input :address %>
-          <%= f.submit "Criar perfil profissional", class: 'btn btn-primary' %>
-        <% end %>
+<div class="image-regis">
+  <div class="container pt-3">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <div class="bg-white rounded p-3 shadow">
+          <h2 class="text-center">Formulário profissional</h2>
+          <%= simple_form_for current_user, url: update_professional_info_path do |f|%>
+            <%= f.input :profession %>
+            <%= f.input :description %>
+            <%= f.input :address %>
+            <%= f.submit "Criar perfil profissional", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

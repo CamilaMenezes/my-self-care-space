@@ -1,19 +1,20 @@
-<div class="container">
-  <h1>Serviços</h1>
-  <div class="row">
-    <% @services.each do |service| %>
-      <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
-        <%= link_to service_path(service.id) do %>
-          <div class="bg-white rounded p-3 shadow">
-            <h2><%= service.name %></h2>
-            <p>Profissional: <%= service.user.name %></p>
-            <p>Local: <%= service.user.address %></p>
-            <p>Valor: <%= service.price %></p>
-          </div>
-        <% end %>
-      </div>  
-    <% end %> 
+<div class="parallax3">
+  <div class="container">
+    <div class="row">
+      <% @services.each do |service| %>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
+          <%= link_to service_path(service.id), class: "b-card" do %>
+            <div class="bg-white rounded p-3 shadow">
+              <h2><%= service.name %></h2>
+              <p>Profissional: <%= service.user.name %></p>
+              <p>Local: <%= service.user.address %></p>
+              <p>Valor: <%= service.price %></p>
+            </div>
+          <% end %>
+        </div>  
+      <% end %> 
+    </div>
+    <p><%= link_to "Voltar para meu perfil", my_profile_path, class: "btn btn-primary mt-3"  %></p>   
   </div>
-  <p><%= link_to "Voltar para meu perfil", my_profile_path, class: "btn btn-primary"  %></p>   
 </div>
 

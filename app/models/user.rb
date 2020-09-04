@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :services, through: :orders, dependent: :destroy
   has_many :sold_services, class_name: "Service", dependent: :destroy
+  has_one_attached :photo
+  has_many :images, dependent: :destroy
 
   validates :name, presence: true
 end

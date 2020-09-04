@@ -3,10 +3,10 @@
 .parallax {
   /* The image used */
   background-image: asset-url("logo.rosa.jpg");
-
+  
   /* Set a specific height */
   height: 400px;
-
+  
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
@@ -14,15 +14,51 @@
   background-size: cover;
 }
 
-.background {
+.parallax2 {
+  /* The image used */
+  background-image: asset-url("banner.JPG");
+  
+  /* Set a specific height */
+  height: 300px;
+  
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .bottom-card-1 {
+    background-color: #fffD;
+  }
+
+  .bottom-card-2 {
+    background-color: #1A936FDD;
+  }
+
+  .bottom-card-3 {
+    background-color: #F3E9D2DD;
+  }
+}
+
+.background1 {
   background-color: $background;
 }
 
-#box {
+.background2 {
+  height: 300px;
+  text {
+    h3 {
+      color: black;
+    }
+  }
+}
+
+
+
+.box {
   border: 1px solid $nav;
   border-radius: 10px
   
-
 }
 
 

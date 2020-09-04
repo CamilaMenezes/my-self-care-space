@@ -1,0 +1,19 @@
+.parallax3 {
+  /* The image used */
+  background-image: asset-url("bg-services.jpg");
+  
+  /* Set a specific height */
+  min-height: 100vh;
+  height: 100%;
+  
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.transbox {
+  background-color: $background;
+}
+

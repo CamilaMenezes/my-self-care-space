@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-12 col-lg-9">
-    <div class="row">
+<div class="row p-2">
+  <div class="col-12 col-lg-8">
+    <div class="row box p-3">
       <div class="col-12 col-md-6">
         <h2>Perfil profissional</h2>
         <p>Atuação: <%= current_user.profession %> </p>
@@ -13,15 +13,18 @@
       </div>
     </div>
 
-    <h2>Meus agendamentos</h2>
+    <h2 class="p-3">Meus agendamentos</h2>
     <div class="row">
       <% current_user.sold_services.each do |service|  %>
         <% service.orders.each do |order| %>
-          <div class="col-12 col-sm-6 col-md-4 col-xl-3 mt-3">
+          <div class="col-12 col-sm-6 col-md-4 mt-3">
             <div class="bg-white rounded p-3 shadow">
               <h3><%= order.service.name %></h3>
-              <p>Cliente: <%= order.user.name %></p>
-              <p>Data: <%= order.reservation %></p>
+              <p>Cliente: <%= order.user.name %></p> 
+              <p>
+                <i class="far fa-calendar"></i> <%= order.reservation.strftime("%d/%m/%Y") %>
+                <i class="far fa-clock"></i> <%= order.reservation.strftime("%H:%M") %>
+              </p>
               <p>Valor: <%= order.final_price %></p>
               <p>status: <%= order.status %></p>
               <% if order.status == "Em espera" %>
@@ -35,13 +38,27 @@
       <% end %>
     </div>
   </div>
-  <div class="col-12 col-lg-3">
-    <h2>Meus serviços</h2>
-    <ul> 
-      <% current_user.sold_services.each do |service| %>
-        <li><%= link_to"#{service.name}, Valor: #{service.price}", service_path(service.id) %></li>
-      <% end %>
-    </ul>
+  <div class="col-12 mt-3 mt-lg-0 col-lg-4 text-center">
+    <h3>Seus serviços</h3>
+    <table class="table">
+      <thead>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <% current_user.sold_services.each do |service| %>
+          <tr>
+            <td><%= link_to service.name, service_path(service.id) %></td>
+            <td>R$ <%= service.price %></td>
+            <td>
+              <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_service_path(service), class: "text-warning" %>
+              <%= link_to '<i class="fas fa-times"></i>'.html_safe, service_path(service), method: :delete, class: "text-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table> 
     <%= link_to "Criar um novo serviço", new_service_path, class: "btn btn-primary"%>
   </div>
 </div>

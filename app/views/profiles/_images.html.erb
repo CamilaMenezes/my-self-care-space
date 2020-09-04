@@ -1,0 +1,24 @@
+
+<div class="parallax3" style="height: unset;">
+  <div class="container">
+    <div class="row">
+      <% profile.images.each do |image|  %>
+        <div class="col-12 col-sm-6 col-md-4 mt-3">
+          <div class="bg-white rounded p-3 shadow">
+            <%= cl_image_tag image.photo.key, class: 'w-100' %>
+          </div>
+        </div>  
+      <% end %> 
+    </div>
+    <% if current_user == profile %>
+      <h2>Nova Foto</h2>
+
+      <%= simple_form_for [profile, new_image], url: profile_images_path(profile) do |f| %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :photo, as: :file %>
+        <%= f.button :submit %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
